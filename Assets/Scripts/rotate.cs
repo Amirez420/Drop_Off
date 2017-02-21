@@ -3,7 +3,6 @@ using System.Collections;
 
 public class rotate : MonoBehaviour 
 {
-	private bool isFlipping = false;
 	private float m_lerpNo = 0;
 	float playerZRot;
 	Vector3 m_gravity;

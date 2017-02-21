@@ -130,7 +130,7 @@ namespace UnityStandardAssets.Characters.FirstPerson
         {
             RotateView();
 
-            if (CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump)
+            if (CrossPlatformInputManager.GetButtonDown("Jump") && !m_Jump && Grounded)
             {
                 m_Jump = true;
             }
@@ -261,5 +261,15 @@ namespace UnityStandardAssets.Characters.FirstPerson
                 m_Jumping = false;
             }
         }
+
+		public void WallJump()
+		{
+			mouseLook.DoRotation (0.0f, 180.0f, transform, cam.transform);
+
+			m_RigidBody.AddForce (-2.0f * m_RigidBody.velocity, ForceMode.VelocityChange);
+			m_RigidBody.AddForce(transform.up * movementSettings.JumpForce, ForceMode.Impulse);
+			m_Jump = false;
+			m_Jumping = true;
+		}
     }
 }
